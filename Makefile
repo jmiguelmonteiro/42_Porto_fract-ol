@@ -6,7 +6,7 @@
 #    By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 15:17:48 by josemigu          #+#    #+#              #
-#    Updated: 2025/06/06 15:23:54 by josemigu         ###   ########.fr        #
+#    Updated: 2025/06/06 18:42:45 by josemigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	= fractol
 
 # Compiler
 CC		= cc
-CFLAGS	= -Werror -Wextra -Wall
+CFLAGS	= -Werror -Wextra -Wall -g
 
 # Minilibx
 MLX_PATH	= minilibx-linux/
@@ -34,7 +34,10 @@ INC			=	-I ./includes/ \
 
 # Sources
 SRC_PATH	=	src/
-SRC			=	fractol.c
+SRC			=	fractol.c \
+				utils.c \
+				init.c \
+				args.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
@@ -64,8 +67,7 @@ $(LIBFT):
 
 $(NAME): $(OBJS)
 	@echo "Compiling fractol..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC)
-#	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT)  $(INC) -lXext -lX11 -lm
 	@echo "Fractol ready."
 
 bonus: all
