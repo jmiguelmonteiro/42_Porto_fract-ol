@@ -6,31 +6,43 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 18:01:03 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/06 18:45:15 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/07 17:14:44 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	init_struct(t_fractol *fractol)
+static void	init_data(t_fractol *f)
 {
-	fractol->set = 0;
-	fractol->cx = 1;
-	fractol->cy = 1;
+	f->set = 0;
+	f->cx = 1;
+	f->cy = 1;
 }
 
-static void	init_mlx(t_fractol *fractol)
+static void	init_mlx(t_fractol *f)
 {
-	fractol->mlx = mlx_init;
-	if (!fractol->mlx)
-		exit(EXIT_FAILURE);
-	fractol->window = mlx_new_window(fractol->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
-		"Josemigu's Fract-ol");
-	fractol->image = mlx_new_image(fractol->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	f->mlx = mlx_init();
+	if (!f->mlx)
+		exit_fractol(EXIT_FAILURE, f);
+	f->mlx_win = mlx_new_window(f->mlx, 
+		W_WIDTH, W_HEIGHT, "Josemigu's Fract-ol");
+	if (!f->mlx_win)
+		exit_fractol(EXIT_FAILURE, f);
+	f->mlx_img.img_ptr = mlx_new_image(
+		f->mlx,
+		W_WIDTH,
+		W_HEIGHT);
+	if (!f->mlx_img.img_ptr)
+		exit_fractol(EXIT_FAILURE, f);
+	f->mlx_img.img_pixels_ptr = mlx_get_data_addr(
+		f->mlx_img.img_ptr,
+		&f->mlx_img.bits_per_pixel,
+		&f->mlx_img.line_len,
+		&f->mlx_img.endian);
 }
 
-void	init_all(t_fractol *fractol)
+void	init_all(t_fractol *f)
 {
-	init_struct(fractol);
-	init_mlx(fractol);
+	init_data(f);
+	init_mlx(f);
 }

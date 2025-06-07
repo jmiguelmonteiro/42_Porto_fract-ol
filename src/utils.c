@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:07:32 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/06 17:44:53 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/07 15:03:52 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,21 @@ double	ft_atof(char *str)
 	if (str[i] && !ft_isdigit(str[i]))
 		return (-42);
 	return (nb * is_neg);
+}
+
+void	exit_fractol(int exit_code, t_fractol *f)
+{
+	if (!f)
+		exit(exit_code);
+	if (f->mlx_img.img_ptr)
+		mlx_destroy_image(f->mlx, f->mlx_img.img_ptr);
+	if (f->mlx_win && f->mlx)
+		mlx_destroy_window(f->mlx, f->mlx_win);
+	if (f->mlx)
+	{
+		mlx_loop_end(f->mlx);
+		mlx_destroy_display(f->mlx);
+		free(f->mlx);
+	}
+	exit(exit_code);
 }
