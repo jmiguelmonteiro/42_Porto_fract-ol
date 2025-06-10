@@ -6,7 +6,7 @@
 #    By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 15:17:48 by josemigu          #+#    #+#              #
-#    Updated: 2025/06/07 15:13:31 by josemigu         ###   ########.fr        #
+#    Updated: 2025/06/10 15:15:39 by josemigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ SRC			=	fractol.c \
 				utils.c \
 				init.c \
 				args.c \
-				draw.c 
+				draw.c \
+				calc.c \
+				handle.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects

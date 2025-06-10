@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:13:43 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/07 17:18:39 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:28:59 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ void	my_pixel_put(t_image *i, int x, int y, int color)
 	*((unsigned int *)(offset + i->img_pixels_ptr)) = color; 
 }
 
-void	color_screen(t_fractol *f, int color)
+void	draw_fractol(t_fractol *f)
 {
-	for (int y = 0; y < W_HEIGHT; ++y)
+	f->x = 0;
+	f->y = 0;
+	while (f->x < W_SIZE)
 	{
-		for (int x = 0; x < W_WIDTH; ++x)
+		while (f->y < W_SIZE)
 		{
-//			mlx_pixel_put(f->mlx, f->mlx_win, x, y, color);
-			my_pixel_put(&f->mlx_img, x, y, color);
+			if (f->set == MANDELBROT)
+			calc_mandelbrot(f);
+			f->y++;
 		}
+		f->x++;
+		f->y = 0;
 	}
+	mlx_put_image_to_window(f->mlx, f->mlx_win, f->mlx_img.img_ptr, 0, 0);
 }
-
