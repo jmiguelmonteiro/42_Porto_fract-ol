@@ -6,11 +6,16 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:07:32 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/07 15:03:52 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:40:47 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+double	map(double value, double smin, double smax, double size)
+{
+	return ((smax - smin) * value / size + smin);
+}
 
 static int	ft_isspace(int c)
 {

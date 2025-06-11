@@ -6,34 +6,92 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:50:04 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/10 17:47:23 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:34:51 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	calc_mandelbrot(t_fractol *f)
+void	calc_mandelbrot(int x, int y, t_fractol *f)
 {
-	int		i;
-	double	x_temp;
+	int			iter;
+	double		r_temp;
+	int			color;
+	t_complex	z;
+	t_complex	c;
 
-	i = 0;
-	f->zx = 0.0;
-	f->zy = 0.0;
-	f->cx = (f->x / f->zoom) + f->offset_x;
-	f->cy = (f->y / f->zoom) + f->offset_y;
-	while ((f->zx * f->zx + f->zy * f->zy <= 4) && (++i < f->max_iterations))
-//	while (++i < f->max_iterations)
+	iter = 0;
+	z.r = 0.0;
+	z.i = 0.0;
+	c.r = map(x, -2, 2, WIDTH) * f->zoom + f->offset_x;
+	c.i = map(y, 2, -2, HEIGHT) * f->zoom + f->offset_y;
+	while (++iter < f->max_iterations)
 	{
-		x_temp = f->zx * f->zx - f->zy * f->zy + f->cx;
-		f->zy = 2. * f->zx * f->zy + f->cy;
-		f->zx = x_temp;
- 		if (f->zx * f->zx + f->zy * f->zy >= __DBL_MAX__)
-			break ;
+		r_temp = z.r * z.r - z.i * z.i + c.r;
+		z.i = 2. * z.r * z.i + c.i;
+		z.r = r_temp;
+		if ((z.r * z.r + z.i * z.i) > 4)
+		{
+			color = map(iter, BLACK, WHITE, f->max_iterations);
+			my_pixel_put(&f->mlx_img, x, y, color);
+			return ;
+		}
 	}
-	if (i == f->max_iterations)
-		my_pixel_put(&f->mlx_img, f->x, f->y, 0x000000);
-	else
-//		my_pixel_put(&f->mlx_img, f->x, f->y, i % 0xFFFFFF);
-		my_pixel_put(&f->mlx_img, f->x, f->y, (f->color * i));
+	my_pixel_put(&f->mlx_img, x, y, 0x000000);
+}
+
+void	calc_julia(int x, int y, t_fractol *f)
+{
+	int			iter;
+	double		r_temp;
+	int			color;
+	t_complex	z;
+	t_complex	c;
+
+	iter = 0;
+	c.r = f->julia.r;
+	c.i = f->julia.i;
+	z.r = map(x, -2, 2, WIDTH) * f->zoom + f->offset_x;
+	z.i = map(y, 2, -2, HEIGHT) * f->zoom + f->offset_y;
+	while (++iter < f->max_iterations)
+	{
+		r_temp = z.r * z.r - z.i * z.i + c.r;
+		z.i = 2. * z.r * z.i + c.i;
+		z.r = r_temp;
+		if ((z.r * z.r + z.i * z.i) > 4)
+		{
+			color = map(iter, BLACK, WHITE, f->max_iterations);
+			my_pixel_put(&f->mlx_img, x, y, color);
+			return ;
+		}
+	}
+	my_pixel_put(&f->mlx_img, x, y, 0x000000);
+}
+
+void	calc_burningship(int x, int y, t_fractol *f)
+{
+	int			iter;
+	double		r_temp;
+	int			color;
+	t_complex	z;
+	t_complex	c;
+
+	iter = 0;
+	z.r = 0.0;
+	z.i = 0.0;
+	c.r = map(x, -2, 2, WIDTH) * f->zoom + f->offset_x;
+	c.i = map(y, 2, -2, HEIGHT) * f->zoom + f->offset_y;
+	while (++iter < f->max_iterations)
+	{
+		r_temp = z.r * z.r - z.i * z.i + c.r;
+		z.i = fabs(2. * z.r * z.i) + c.i;
+		z.r = fabs(r_temp);
+		if ((z.r * z.r + z.i * z.i) > 4)
+		{
+			color = map(iter, BLACK, WHITE, f->max_iterations);
+			my_pixel_put(&f->mlx_img, x, y, color);
+			return ;
+		}
+	}
+	my_pixel_put(&f->mlx_img, x, y, 0x000000);
 }

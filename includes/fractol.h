@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:25:06 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/10 18:02:14 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:36:55 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,44 @@
 # include <libft.h>
 # include <math.h>
 # include <mlx.h>
+# include <X11/X.h>
 # include <X11/keysym.h>
 
 /*  Fractal sets	*/
 # define MANDELBROT 1
 # define JULIA 2
+# define BURNINGSHIP 3
 
 /*  Window dimensions  */
-# define W_SIZE 800
+# define WIDTH 800
+# define HEIGHT 800
 
-/*  Mouse codes*/
+/*  Mouse codes  */
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
+
+/*  Zoom codes  */
+# define ZOOM_IN 1
+# define ZOOM_OUT 0
+
+/*
+ * COLORS
+*/
+#define BLACK       0x000000  // RGB(0, 0, 0)
+#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
+#define RED         0xFF0000  // RGB(255, 0, 0)
+#define GREEN       0x00FF00  // RGB(0, 255, 0)
+#define BLUE        0x0000FF  // RGB(0, 0, 255)
+
+// Psychedelic colors
+#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+#define LIME_SHOCK      0xCCFF00  // A blinding lime
+#define NEON_ORANGE     0xFF6600  // A blazing neon orange
+#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+#define AQUA_DREAM      0x33CCCC  // A bright turquoise
+#define HOT_PINK        0xFF66B2  // As the name suggests!
+#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
+#define LAVA_RED        0xFF3300  // A bright, molten red
 
 /* Structures */
 typedef struct s_image
@@ -40,23 +66,23 @@ typedef struct s_image
 	int		line_len;
 }	t_image;
 
+typedef struct	s_complex
+{
+	double	r;
+	double	i;
+}	t_complex;
+
 typedef struct s_fractol
 {
-	int		set;
-	int		x;
-	int		y;
-	double	zx;
-	double	zy;
-	double	cx;
-	double	cy;
-	int		color;
-	double	offset_x;
-	double	offset_y;
-	double	zoom;
-	int		max_iterations;
-	void	*mlx;
-	void	*mlx_win;
-	t_image	mlx_img;
+	int			set;
+	double		offset_x;
+	double		offset_y;
+	double		zoom;
+	int			max_iterations;
+	t_complex	julia;
+	void		*mlx;
+	void		*mlx_win;
+	t_image		mlx_img;
 }	t_fractol;
 
 typedef unsigned char	byte;
@@ -67,14 +93,19 @@ double	ft_atof(char *str);
 void	init_data(t_fractol *f);
 void	init_all(t_fractol *fractol);
 void	exit_fractol(int exit_code, t_fractol *f);
+double	map(double value, double smin, double smax, double size);
 
+void	zoom(t_fractol *fractal, int x, int y, int zoom);
 int		encode_rgb(byte red, byte green, byte blue);
 void	my_pixel_put(t_image *i, int x, int y, int color);
 
+int		handle_close(t_fractol *f);
 int		handle_key_input(int keysym, t_fractol *f);
 int		handle_mouse_input(int mouse_code, int x, int y, t_fractol *f);
 
 void	draw_fractol(t_fractol *f);
-void	calc_mandelbrot(t_fractol *f);
+void	calc_mandelbrot(int x, int y, t_fractol *f);
+void	calc_julia(int x, int y, t_fractol *f);
+void	calc_burningship(int x, int y, t_fractol *f);
 
 #endif

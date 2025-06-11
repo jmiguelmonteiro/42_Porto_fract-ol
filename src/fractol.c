@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:20:49 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/10 15:54:37 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:29:41 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	main(int argc, char **argv)
 {
 	t_fractol	fractol;
 
-	init_all(&fractol);
 	process_args(argc, argv, &fractol);
+	init_all(&fractol);
 	mlx_key_hook(fractol.mlx_win, handle_key_input, &fractol);
 	mlx_mouse_hook(fractol.mlx_win, handle_mouse_input, &fractol);
+	mlx_hook(fractol.mlx_win, DestroyNotify, StructureNotifyMask,
+		handle_close, &fractol);
 	draw_fractol(&fractol);
 	mlx_loop(fractol.mlx);
 
