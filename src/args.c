@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 18:42:08 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:38:28 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:55:21 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	usage(void)
 {
 	ft_printf("Usage:\n" \
 		"\t./fractol mandelbrot\n" \
-		"\t./fractol julia real imaginary\n");
+		"\t./fractol julia real imaginary\n" \
+		);
 	exit (EXIT_FAILURE);
 }
 

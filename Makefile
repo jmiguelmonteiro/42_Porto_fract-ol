@@ -6,7 +6,7 @@
 #    By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 15:17:48 by josemigu          #+#    #+#              #
-#    Updated: 2025/06/11 14:49:11 by josemigu         ###   ########.fr        #
+#    Updated: 2025/06/11 18:50:33 by josemigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) $(CFLAGS_EXTRA)
 	@echo "Fractol ready."
 
-bonus: all
+#bonus: all
 
 clean:
 	@echo "Removing .o object files..."
