@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:25:06 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:36:55 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/12 09:35:03 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,21 @@
 /*
  * COLORS
 */
-#define BLACK       0x000000  // RGB(0, 0, 0)
-#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
-#define RED         0xFF0000  // RGB(255, 0, 0)
-#define GREEN       0x00FF00  // RGB(0, 255, 0)
-#define BLUE        0x0000FF  // RGB(0, 0, 255)
+# define BLACK       0x000000  // RGB(0, 0, 0)
+# define WHITE       0xFFFFFF  // RGB(255, 255, 255)
+# define RED         0xFF0000  // RGB(255, 0, 0)
+# define GREEN       0x00FF00  // RGB(0, 255, 0)
+# define BLUE        0x0000FF  // RGB(0, 0, 255)
 
 // Psychedelic colors
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-#define LIME_SHOCK      0xCCFF00  // A blinding lime
-#define NEON_ORANGE     0xFF6600  // A blazing neon orange
-#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define HOT_PINK        0xFF66B2  // As the name suggests!
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define LAVA_RED        0xFF3300  // A bright, molten red
+# define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+# define LIME_SHOCK      0xCCFF00  // A blinding lime
+# define NEON_ORANGE     0xFF6600  // A blazing neon orange
+# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+# define AQUA_DREAM      0x33CCCC  // A bright turquoise
+# define HOT_PINK        0xFF66B2  // As the name suggests!
+# define ELECTRIC_BLUE   0x0066FF  // A radiant blue
+# define LAVA_RED        0xFF3300  // A bright, molten red
 
 /* Structures */
 typedef struct s_image
@@ -66,7 +66,7 @@ typedef struct s_image
 	int		line_len;
 }	t_image;
 
-typedef struct	s_complex
+typedef struct s_complex
 {
 	double	r;
 	double	i;
@@ -85,7 +85,7 @@ typedef struct s_fractol
 	t_image		mlx_img;
 }	t_fractol;
 
-typedef unsigned char	byte;
+typedef unsigned char	t_byte;
 
 /* Functions */
 void	process_args(int argc, char **argv, t_fractol *fractol);
@@ -96,7 +96,7 @@ void	exit_fractol(int exit_code, t_fractol *f);
 double	map(double value, double smin, double smax, double size);
 
 void	zoom(t_fractol *fractal, int x, int y, int zoom);
-int		encode_rgb(byte red, byte green, byte blue);
+int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 void	my_pixel_put(t_image *i, int x, int y, int color);
 
 int		handle_close(t_fractol *f);

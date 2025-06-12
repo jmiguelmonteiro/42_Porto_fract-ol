@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:20:49 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/11 16:29:41 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/12 09:39:36 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int	main(int argc, char **argv)
 		handle_close, &fractol);
 	draw_fractol(&fractol);
 	mlx_loop(fractol.mlx);
-
 	return (EXIT_SUCCESS);
 }

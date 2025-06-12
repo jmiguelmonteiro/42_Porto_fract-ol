@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:13:43 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:40:42 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/12 09:39:21 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	zoom(t_fractol *fractal, int x, int y, int zoom)
 	return ;
 }
 
-int	encode_rgb(byte red, byte green, byte blue)
+int	encode_rgb(t_byte red, t_byte green, t_byte blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
@@ -42,14 +42,14 @@ void	my_pixel_put(t_image *i, int x, int y, int color)
 	int	offset;
 
 	offset = (i->line_len * y) + (x * (i->bits_per_pixel / 8));
-	*((unsigned int *)(offset + i->img_pixels_ptr)) = color; 
+	*((unsigned int *)(offset + i->img_pixels_ptr)) = color;
 }
 
 void	draw_fractol(t_fractol *f)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = 0;
 	y = 0;
 	while (x < WIDTH)

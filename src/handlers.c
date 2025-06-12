@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:14:48 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/11 19:15:53 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/12 09:46:29 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	handle_key_input(int keysym, t_fractol *f)
 	ft_printf("The %d key has been pressed!!!\n", keysym);
 	if (keysym == XK_Escape)
 		handle_close(f);
-	else if (keysym == 65432)
+	else if (keysym == 65363)
 		f->offset_x -= 0.5 * f->zoom;
-	else if (keysym == 65430)
+	else if (keysym == 65361)
 		f->offset_x += 0.5 * f->zoom;
-	else if (keysym == 65431)
+	else if (keysym == 65362)
 		f->offset_y -= 0.5 * f->zoom;
-	else if (keysym == 65433)
+	else if (keysym == 65364)
 		f->offset_y += 0.5 * f->zoom;
 	else if (keysym == 65451)
 	{
@@ -41,7 +41,7 @@ int	handle_key_input(int keysym, t_fractol *f)
 		if (f->max_iterations * 0.8 >= 20)
 			f->max_iterations *= 0.8;
 	}
-	else if (keysym == 65438)
+	else if (keysym == XK_r)
 		init_data(f);
 	draw_fractol(f);
 	return (0);
