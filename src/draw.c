@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:13:43 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/12 09:39:21 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:51:11 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	my_pixel_put(t_image *i, int x, int y, int color)
 
 void	draw_fractol(t_fractol *f)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	x = 0;
 	y = 0;
@@ -57,11 +57,11 @@ void	draw_fractol(t_fractol *f)
 		while (y < HEIGHT)
 		{
 			if (f->set == MANDELBROT)
-				calc_mandelbrot(x, y, f);
+				calc_mandelbrot(x, y, f, 0);
 			else if (f->set == JULIA)
-				calc_julia(x, y, f);
+				calc_julia(x, y, f, 0);
 			else if (f->set == BURNINGSHIP)
-				calc_burningship(x, y, f);
+				calc_burningship(x, y, f, 0);
 			y++;
 		}
 		x++;

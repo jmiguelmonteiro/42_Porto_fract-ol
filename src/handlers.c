@@ -6,20 +6,11 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:14:48 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/18 14:44:37 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:10:48 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static void	handle_color_shift(int keysym, t_fractol *f)
-{
-	(void)f;
-	if (keysym == 91)
-		;
-	else if (keysym == 93)
-		;
-}
 
 static void	handle_iterations(int keysym, t_fractol *f)
 {
@@ -43,6 +34,7 @@ int	handle_close(t_fractol *f)
 
 int	handle_key_input(int keysym, t_fractol *f)
 {
+	ft_printf("%d\n", keysym);
 	if (keysym == XK_Escape)
 		handle_close(f);
 	else if (keysym == 65363)
@@ -55,8 +47,8 @@ int	handle_key_input(int keysym, t_fractol *f)
 		f->offset_y += 0.5 * f->zoom;
 	else if (keysym == 45 || keysym == 61)
 		handle_iterations(keysym, f);
-	else if (keysym == 91 || keysym == 93)
-		handle_color_shift(keysym, f);
+	else if (keysym == 99)
+		f->color_palette = (f->color_palette + 1) % 4;
 	else if (keysym == XK_r)
 		init_data(f);
 	draw_fractol(f);

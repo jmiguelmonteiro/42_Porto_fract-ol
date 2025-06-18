@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 18:01:03 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/12 09:38:29 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:00:51 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_data(t_fractol *f)
 	f->offset_x = 0;
 	f->offset_y = 0;
 	f->zoom = 1;
+	f->color_palette = 0;
 	f->max_iterations = 42;
 }
 

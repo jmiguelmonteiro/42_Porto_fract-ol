@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:25:06 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/12 09:35:03 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:49:53 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,11 @@
 /*
  * COLORS
 */
-# define BLACK       0x000000  // RGB(0, 0, 0)
-# define WHITE       0xFFFFFF  // RGB(255, 255, 255)
-# define RED         0xFF0000  // RGB(255, 0, 0)
-# define GREEN       0x00FF00  // RGB(0, 255, 0)
-# define BLUE        0x0000FF  // RGB(0, 0, 255)
-
-// Psychedelic colors
-# define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-# define LIME_SHOCK      0xCCFF00  // A blinding lime
-# define NEON_ORANGE     0xFF6600  // A blazing neon orange
-# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-# define AQUA_DREAM      0x33CCCC  // A bright turquoise
-# define HOT_PINK        0xFF66B2  // As the name suggests!
-# define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-# define LAVA_RED        0xFF3300  // A bright, molten red
+# define BLACK	0x000000
+# define WHITE	0xFFFFFF
+# define RED	0xFF0000
+# define GREEN	0x00FF00
+# define BLUE	0x0000FF
 
 /* Structures */
 typedef struct s_image
@@ -78,6 +68,9 @@ typedef struct s_fractol
 	double		offset_x;
 	double		offset_y;
 	double		zoom;
+	int			color_palette;    // 0-3
+	double		color_speed;   // 0.1-2.0
+	double		color_offset;  // para animação
 	int			max_iterations;
 	t_complex	julia;
 	void		*mlx;
@@ -104,8 +97,10 @@ int		handle_key_input(int keysym, t_fractol *f);
 int		handle_mouse_input(int mouse_code, int x, int y, t_fractol *f);
 
 void	draw_fractol(t_fractol *f);
-void	calc_mandelbrot(int x, int y, t_fractol *f);
-void	calc_julia(int x, int y, t_fractol *f);
-void	calc_burningship(int x, int y, t_fractol *f);
+void	calc_mandelbrot(int x, int y, t_fractol *f, double magnitude);
+void	calc_julia(int x, int y, t_fractol *f, double magnitude);
+void	calc_burningship(int x, int y, t_fractol *f, double magnitude);
+
+int		get_color(double smooth_iter, t_fractol *f);
 
 #endif
