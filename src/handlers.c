@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:14:48 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/12 09:46:29 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:55:56 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	handle_key_input(int keysym, t_fractol *f)
 		f->offset_y -= 0.5 * f->zoom;
 	else if (keysym == 65364)
 		f->offset_y += 0.5 * f->zoom;
-	else if (keysym == 65451)
+	else if (keysym == 43)
 	{
-		if (f->max_iterations * 1.2 <= 120)
+		if (f->max_iterations * 1.2 <= 1200)
 			f->max_iterations *= 1.2;
 	}
-	else if (keysym == 65453)
+	else if (keysym == 45)
 	{
 		if (f->max_iterations * 0.8 >= 20)
 			f->max_iterations *= 0.8;
