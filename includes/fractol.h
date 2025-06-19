@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:25:06 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/18 18:49:53 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:35:47 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ typedef struct s_fractol
 	double		offset_x;
 	double		offset_y;
 	double		zoom;
-	int			color_palette;    // 0-3
-	double		color_speed;   // 0.1-2.0
-	double		color_offset;  // para animação
+	int			color_palette;
 	int			max_iterations;
 	t_complex	julia;
 	void		*mlx;
@@ -102,5 +100,8 @@ void	calc_julia(int x, int y, t_fractol *f, double magnitude);
 void	calc_burningship(int x, int y, t_fractol *f, double magnitude);
 
 int		get_color(double smooth_iter, t_fractol *f);
+int		get_purple_palette(double smooth_iter, t_fractol *f);
+int		get_blue_palette(double smooth_iter);
+int		get_fire_palette(double smooth_iter, t_fractol *f);
 
 #endif

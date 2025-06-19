@@ -6,7 +6,7 @@
 /*   By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:14:48 by josemigu          #+#    #+#             */
-/*   Updated: 2025/06/18 18:10:48 by josemigu         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:39:49 by josemigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	handle_close(t_fractol *f)
 
 int	handle_key_input(int keysym, t_fractol *f)
 {
-	ft_printf("%d\n", keysym);
 	if (keysym == XK_Escape)
 		handle_close(f);
 	else if (keysym == 65363)

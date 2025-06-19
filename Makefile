@@ -6,7 +6,7 @@
 #    By: josemigu <josemigu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 15:17:48 by josemigu          #+#    #+#              #
-#    Updated: 2025/06/18 17:48:23 by josemigu         ###   ########.fr        #
+#    Updated: 2025/06/19 17:38:56 by josemigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 NAME	= fractol
 
 # Compiler
-CC		= cc
-CFLAGS	= -Werror -Wextra -Wall -g
-CFLAGS_EXTRA = -lXext -lX11 -lm
+CC				= cc
+CFLAGS			= -Werror -Wextra -Wall -g
+CFLAGS_EXTRA	= -lXext -lX11 -lm
 
 # Minilibx
 MLX_PATH	= minilibx-linux/
@@ -42,7 +42,8 @@ SRC			=	fractol.c \
 				draw.c \
 				calc.c \
 				handlers.c \
-				colors.c
+				colors.c \
+				colors2.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
